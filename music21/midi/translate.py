@@ -395,6 +395,10 @@ def noteToMidiEvents(inputM21, includeDeltaTime=True, channel=1):
 
     n = inputM21
 
+    midiDuration = durationToMidi(n.duration)
+    if midiDuration == 0:
+        return []
+
     mt = None # use a midi track set to None
     eventList = []
 
@@ -424,7 +428,7 @@ def noteToMidiEvents(inputM21, includeDeltaTime=True, channel=1):
     if includeDeltaTime:
         # add note off / velocity zero message
         dt = midiModule.DeltaTime(mt, channel=channel)
-        dt.time = durationToMidi(n.duration)
+        dt.time = midiDuration
         # add to track events
         eventList.append(dt)
 
