@@ -1266,7 +1266,7 @@ class Iterator:
                 title = str(choraleNumber)
 
         if self._returnType == 'stream':
-            chorale = corpus.parse(filename)
+            chorale = corpus.parse(filename, fileExtensions=['.mxl'])
             if self.numberingSystem == 'riemenschneider' and self.analysis:
                 try:
                     riemenschneiderName = 'bach/choraleAnalyses/riemenschneider%03d.rntxt' % (
